@@ -35,9 +35,13 @@
     shadowSize:  [41, 41]
   });
 
-  
+  function onClick(e) {
+    alert(this.getLatLng() + this.getDescripcion);
+  }  
+
   function onEachFeature(feature, layer) {
     console.log(feature);
+    console.log("se ha imprimido la feature");
     layer.bindPopup("<h1>" + feature.properties.descripcion + "</h1>");
   }
 
@@ -46,10 +50,10 @@
 
     L.geoJson(data, {
       pointToLayer: function(feature, latlng) {
-        console.log(latlng, feature);
+        console.log(latlng, feature, feature.properties.description);
         return L.marker(latlng, {
           icon: smallIcon
-        });
+        }).on('click', onClick);
       },
       onEachFeature: onEachFeature
     }).addTo(map);
