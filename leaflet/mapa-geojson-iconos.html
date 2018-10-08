@@ -36,27 +36,37 @@
   });
 
   function onClick(e) {
-    alert(this.getLatLng() + this.getDescripcion);
+   	// Se ejecuta cada vez que hacemos click sobre la marca, es una función redundante. 
   }  
 
   function onEachFeature(feature, layer) {
-    console.log(feature);
-    console.log("se ha imprimido la feature");
-    layer.bindPopup("<h1>" + feature.properties.descripcion + "</h1>");
+	// Durante la carga de "data" en el array que se añade al mapa se asinga un popup a cada marca
+	layer.bindPopup("<h1>" + feature.properties.descripcion + "</h1>");
+	// Después asignamos un evento click a cada marca.
+	var descripcion = feature.properties.descripcion;
+	layer.on('click', function(e) {
+        	// console.log('Layer clicked!', e);
+		alert("descripción: " + descripcion);
+        });
   }
-
+  //PARSEAMOS EL GEOJSON QUE PROVIENE LA URL UTILIZANDO AJAX
   $.getJSON("https://iot.educa.madrid.org/ServiceJson/EO_AllComponent", function(data) {
-    console.log(data);
-
-    L.geoJson(data, {
-      pointToLayer: function(feature, latlng) {
-        console.log(latlng, feature, feature.properties.description);
-        return L.marker(latlng, {
-          icon: smallIcon
-        }).on('click', onClick);
-      },
-      onEachFeature: onEachFeature
-    }).addTo(map);
+  	L.geoJson(data, {
+		// pointToLayer 
+  		pointToLayer: function(feature, latlng) {
+        		return L.marker(latlng, {
+        			icon: smallIcon
+        		}).on('click', onClick);
+      		},
+		// Filter: Podemos filtrar las marques que se dibujan con un "true" o "false"
+		filter: function(feature, layer) {
+			var visibilidad = true;
+			if (feature.properties.proveedorID == "OE_Granadilla"){visibilidad=false;}
+        		return visibilidad;
+    		},
+		// onEachFeature: función que se llama cada vez que un GeoJson se añade al layer
+      		onEachFeature: onEachFeature
+    	}).addTo(map);
   });
   </script>
 </body>
