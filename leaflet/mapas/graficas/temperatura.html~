@@ -1,0 +1,70 @@
+<html>
+<head>
+    <title>Axis Labels and Rotated Text</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">	
+    <link class="include" rel="stylesheet" type="text/css" href="../jquery/jquery.jqplot.min.css" />
+    <link rel="stylesheet" type="text/css" href="../examples.min.css" />
+    <link type="text/css" rel="stylesheet" href="../syntaxhighlighter/styles/shCoreDefault.min.css" />
+    <link type="text/css" rel="stylesheet" href="../syntaxhighlighter/styles/shThemejqPlot.min.css" />
+    <script class="include" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <style type="text/css">
+#contenedor { 
+  width: 100%; 
+  background: #FFFFFF;
+  margin: 0 auto; 
+  text-align: left; 
+}
+#grafica1{
+  float: left;
+  width: 100%;	
+  background: #EEEEEE;
+}
+#temperatura {
+  float: left;
+  width: 80%;
+    height: 200px;
+    }
+#comen1{
+  float: left;
+  width: 10%;
+  border: 1px;
+  padding: 35px 10px 10px 10px;
+  color: #437BD0;
+  height: 200px;
+}
+#mainContent { 
+  margin: 0 0 0 250px;
+} 
+.jqplot-point-label {white-space: nowrap;}
+<!--div.jqplot-target {height: 200px;width: 750px;margin: 10px;} <!--con esto aplicamos el estilo a todos lso div.jplot-target-->
+div {margin: 5%;background: #EBEBEB;}  <!--con esto aplicamoc el estilo a todos los div-->
+</style>
+</head>
+<body>
+<div id="contenedor">
+  <div id="grafica1">
+	<div id="temperatura">
+	</div>
+	<div id="comen1">
+	</div>
+  </div>
+</div>
+    <script class="include" type="text/javascript" src="../js/graf_temperatura.js"></script>
+    <script class="include" type="text/javascript" src="../jquery/jquery.jqplot.min.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shCore.min.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushJScript.min.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushXml.min.js"></script>
+    <script type="text/javascript" src="../plugins/jqplot.highlighter.min.js"></script>
+    <script type="text/javascript" src="../plugins/jqplot.cursor.min.js"></script>
+    <script type="text/javascript" src="../plugins/jqplot.dateAxisRenderer.min.js"></script>
+<!-- Additional plugins go here -->
+    <script class="include" type="text/javascript" src="../plugins/jqplot.logAxisRenderer.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.canvasTextRenderer.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.canvasAxisLabelRenderer.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.dateAxisRenderer.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.categoryAxisRenderer.min.js"></script>
+    <script class="include" type="text/javascript" src="../plugins/jqplot.barRenderer.min.js"></script>
+
+</body>
+</html>

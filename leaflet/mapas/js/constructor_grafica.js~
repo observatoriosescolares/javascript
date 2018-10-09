@@ -1,0 +1,174 @@
+//----------------------------------------------------------------------------------------------------
+//DEFINICIÓN DE VARIABLES Y RECOGIDA DE PARÁMETROS DE LA URL. 
+var misVariablesGet = getVarsUrl();  //en este función asignamos los distintos parámetros a miVariablesGet.
+var proveedor = misVariablesGet.proveedor;
+if (!proveedor) {proveedor = "OE_I_EDU"}
+var rango = misVariablesGet.rango;
+if ( !rango ) { rango = "0.02"}
+var fin = misVariablesGet.fin;
+if ( !fin ){fin="-1"};
+var parametro = misVariablesGet.parametro;
+if (!parametro){parametro = "temperatura"};
+var color = misVariablesGet.color;
+var frecuencia = parseFloat(misVariablesGet.frecuencia);
+if (!frecuencia){frecuencia = 10000}else{frecuencia = frecuencia*1000} //frecuencia de refresco en milisegundos.
+if (!color){color="#437BD0"}else{color = "#" + color};
+var maximoURL = misVariablesGet.max;
+var minimoURL = misVariablesGet.min;
+var precisionURL = misVariablesGet.pre;
+var unidadesURL = misVariablesGet.uni;
+//-------------------------------------------------------------------------
+var inicio=0;
+var finGra=0;
+var maximo=0;
+var minimo=0;
+var maximoGRA=0;
+var minimoGRA=0;
+var precisionGRA = 0;
+var unidades = "";
+var media=0; //si no ponemos el cero pone que no está definida. 
+var plot6;
+var xmlhttp = new XMLHttpRequest();
+//var url = "http://www.smartcitything.es:8080/ServiceJson/JsonSensorObservations?proveedorID=OE_I_EDU&sensorID=temperatura&rango=0.02;
+var url = "https://iot.educa.madrid.org/ServiceJson/JsonSensorObservations?proveedorID="+proveedor+"&sensorID="+parametro+"&rango="+rango+"&fin=-1";
+
+// REPRESENTACIÓN GRÁFICA CADA CIERTO TIEMPO-------------------------------------------------
+$(document).ready(function () {  
+    var myArr = {};  
+    xmlhttp.onreadystatechange = function() {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
+        {
+		myArr = JSON.parse(xmlhttp.responseText);
+		if (JSON.stringify(myArr)=='{}'){
+                    deleteGraf();
+    		}else{
+       		        if (plot6){
+                        plot6.destroy();
+                    }
+      			updateSeries();
+              }
+        }
+    }
+    xmlhttp.open("GET", url, false);
+    xmlhttp.send();  
+    window.setInterval(updateSeries, frecuencia);
+});
+//RELLENA EL ARRAY CON DATOS NUEVOS---------------------------------------------------------
+function rellenarArray(Arr){
+    var line4 = [];
+    a = 0;
+    var j = 0;
+    count = 0;
+    media = 0;
+    for (var prop_name in Arr) {
+        a = parseFloat(prop_name);  
+        line4.push([a, Arr[prop_name]]) 
+        if (j==0){
+            inicio = a;
+            maximo = parseFloat(Arr[prop_name]);
+            minimo = parseFloat(Arr[prop_name]);
+            j = 1; 
+        }
+        if (parseFloat(Arr[prop_name]) > maximo){maximo = parseFloat(Arr[prop_name])}
+        if (parseFloat(Arr[prop_name]) < minimo){minimo = parseFloat(Arr[prop_name])}
+        media += parseFloat(Arr[prop_name]);
+        count += 1;
+    };
+    finGra = a;
+    media = media/count;
+    return line4;
+};
+//CREA LA GRÁFICA --------------------------------------------------------------------------------------------------------
+function crearGrafica(myArr1){
+    if (!Date.now) {
+        Date.now = function() { return new Date().getTime(); }
+    } //Se puede utilizar para la finalización de la gráfica pero 
+    if (!maximoURL){maximoGRA = maximo}else{maximoGRA=parseFloat(maximoURL)};
+    if (!minimoURL){minimoGRA = minimo}else{minimoGRA=parseFloat(minimoURL)};
+    if (!unidadesURL){unidades = ""}else{unidades=unidadesURL}
+    if (!precisionURL){precisionGRA = "%.0f"}else{precisionGRA = "%."+precisionURL+"f"+unidades}
+    plot6 = $.jqplot("parametro",  [myArr1], {	
+		    //title : nombre,
+		    axesDefaults: {
+        		tickRenderer: $.jqplot.CanvasAxisTickRenderer ,
+        		tickOptions: {
+          			//angle: -20,
+          			fontSize: '10pt'
+        		}
+            },	 	
+            axes: {
+                //xaxis:{ min:(Date.now()-(3600*rango*1000)), max:Date.now(), renderer: $.jqplot.DateAxisRenderer,
+		xaxis:{ min:(finGra-(3600*rango*1000)), max: finGra, renderer: $.jqplot.DateAxisRenderer,
+			tickOptions: {formatString: '%#d %b, %H:%M:%S', angle: -20}, 					    				tickInterval: '0.05 hour', numberTicks: '7',
+			labelOptions:{fontFamily:'Helvetica', fontSize: '12pt', textColor: color},
+			label:'max: ' +maximo+ ', min: ' +minimo+ ', media: '+ media.toFixed(1) + ' ultima medida: ' + ((Date.now() - finGra)/1000).toFixed(0) + 's'
+                },
+        yaxis:{min:minimoGRA , max:maximoGRA, 
+			tickOptions:{formatString: precisionGRA},
+			labelOptions:{fontFamily:'Helvetica', fontSize: '12pt'}, 				
+			label: parametro + " " + unidades ,labelRenderer: $.jqplot.CanvasAxisLabelRenderer}
+                },
+            	highlighter: {
+                	show: true,
+                	sizeAdjust: 10.0, //Circulo alrededor del punto del que se escribe el valor
+                	tooltipFormatString: '%H:%M %.0fºC'
+      		},
+      		cursor: {
+        	 	show: true,
+                	tooltipLocation:'sw',
+                	zoom:true, 
+        	 	showTooltip:true //Ventana con los datos sobre la base de la gráfica
+      		},
+		seriesDefaults: {
+                	rendererOptions: { smooth: true},  //el número de puntos tiene que ser como mínimo 3 
+                	fill: true, fillToZero: true, fillColor: color, fillAndStroke: true, fillAlpha: 0.7,   
+                	lineWidth: 1, color: '#555555', 
+                markerOptions: {
+			size: 2, 
+			color: '#333333' 
+			},
+		}
+    });
+    //document.getElementById("comen").innerHTML="media: "+ media.toFixed(2) + "</br>maximo: " + maximo + "</br>minimo: " + minimo + "</br>ult. obser. : <h2> " + ((Date.now() - finGra)/1000).toFixed(0)+ "s </h2>";
+};
+//RELLENA LAS VARIABLES USANDO LA URL DE PETICIÓN ----------------------------------------------------------------------------------------------------------------------
+function getVarsUrl() {
+    var url = location.search.replace("?", "");
+    var arrUrl = url.split("&");
+    var urlObj = {};  
+    for (var i=0; i<arrUrl.length; i++){
+    	var x= arrUrl[i].split("=");
+    	urlObj[x[0]]=x[1]
+    }
+    return urlObj;
+};
+//BORRA LA GRÁFICA, RELLENA EL ARRAY Y MANDA A CONSTRUIRLA OTRA VEZ ---------------------------------------------------------------------------------------------------
+function updateSeries() {
+        var myArr;
+    	xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                myArr = JSON.parse(xmlhttp.responseText);
+                if (JSON.stringify(myArr)=='{}'){
+                    deleteGraf();
+                }else{
+                    line4 = rellenarArray(myArr);
+                    if (plot6){
+                        plot6.destroy();
+                    }
+                    if (count > 2){
+                        crearGrafica(line4); //si no hay datos no se crea y después no
+                    }
+		}
+            }
+    	}
+    	xmlhttp.open("GET", url, false); //url es una variable blobal que contiene la dirección para pedir los nuevos parámetros
+    	xmlhttp.send();	
+    }
+//BORRA LA GRÁFICA EXISTENTE.
+function deleteGraf (){
+    if (plot6){
+        plot6.destroy();
+    }
+    document.getElementById("parametro").innerHTML ="No hay datos del parámetro: " + parametro;
+    //document.getElementById("comen").innerHTML="";
+}

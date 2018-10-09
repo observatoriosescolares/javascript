@@ -1,0 +1,73 @@
+<html>
+<head>
+    <title>Graficas en tiempo real</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">	
+    <link rel="stylesheet" type="text/css" href="css/contenedor-graficas.css" />
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    	function getVarsUrl() {
+    		var url = location.search.replace("?", "");
+    		var arrUrl = url.split("&");
+    		var urlObj = {};  
+    		for (var i=0; i<arrUrl.length; i++){
+    			var x= arrUrl[i].split("=");
+    			urlObj[x[0]]=x[1]
+    		}
+    		return urlObj;
+	}
+	// Recogemos los parámetros que vienen en la url 
+	var misVariablesGet = getVarsUrl();
+	var proveedor = misVariablesGet.proveedor;
+	if (!proveedor) {proveedor="OE_CRIF_ACACIAS"};
+	var nombrecon = misVariablesGet.nombre;
+	if ( !nombrecon ) {nombrecon="OBSERVATORIO"};
+	var nombre = nombrecon.split('+').join(' ');
+    </script>
+</head>
+<body>
+  <div id="contenedor" class="contenedor">
+	<div class="cabecera">
+		<div class="titulo" id="titulo"></div>
+		<div class="controles" id="controles">
+		     <form class="formulario" id="formulario">Tiempo a mostrar:  	
+	    		<select class="seleccion" id="seleccion">
+				<option value="0.5">30 minutos</option>
+				<option selected="selected" value="1">1 hora</option>
+                		<option value="6">6 horas</option>
+               			<option value="12">12 horas</option>    
+	    		</select>
+ 	              </form> 
+    		</div>
+  	</div>
+	<div class="framecpu" id="framecpu">
+    		<iframe id="cpu" src="" width="100%" height="220px" name="iframe3" frameBorder="0"></iframe>
+  	</div>
+	<div class="frameram" id="frameram">
+    		<iframe id="ram" src="" width="100%" height="220px" name="iframe3" frameBorder="0"></iframe>
+  	</div>
+	<div class="frameredis" id="frameredis">
+    		<iframe id="redis-dump" src="" width="100%" height="220px" name="iframe2" frameBorder="0"></iframe>
+  	</div>
+ </div>
+ <script>
+	var url34 = "parametro.html?parametro=redis-dump&pre=3&uni=MB&rango=0.5";
+	document.getElementById("redis-dump").src=url34;
+	var url35 = "parametro.html?parametro=cpu&rango=0.5";
+	document.getElementById("cpu").src=url35;
+	var url36 = "parametro.html?parametro=ram&max=2000&min=0&pre=0&uni=MB&rango=0.5";
+	document.getElementById("ram").src=url36;
+	$("#seleccion").on("change", function() {
+      		var url4 = "parametro.html?parametro=redis-dump&pre=3&uni=MB&rango="+$(this).val();
+		document.getElementById("redis-dump").src=url4;
+    	})  
+	$("#seleccion").on("change", function() {
+      		var url5 = "parametro.html?parametro=cpu&rango="+$(this).val();
+		document.getElementById("cpu").src=url5;
+    	})  
+	$("#seleccion").on("change", function() {
+      		var url6 = "parametro.html?parametro=ram&max=2000&pre=0&uni=MB&min=0&rango="+$(this).val();
+		document.getElementById("ram").src=url6;
+    	}) 
+  </script>
+</body>
+</html>

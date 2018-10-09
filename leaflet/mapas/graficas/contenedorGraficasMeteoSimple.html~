@@ -1,0 +1,48 @@
+<!-- CONTENEDOR DE GRÁFICAS DE METEOROLOGÍA -->
+<!-- RECIBE COMO PARÁMETRO EL PROVEEDOR Y MUESTRA TRES GRÁFICAS CON LOS PARÁMETROS DADOS -->
+<!-- LA URL DE LLAMADA ES: https://iot.educa.madrid.org/javascript/graficas/contenedor-graficas-meteo-simple.html?proveedor=OE_San_Diego_San_Vicente -->
+<html>
+<head>
+    <title>Graficas en tiempo real de parámetros meteorológicos</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">	
+    <link rel="stylesheet" type="text/css" href="../css/contenedor-graficas.css" />
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+    	 function getVarsUrl() {
+    		var url = location.search.replace("?", "");
+    		var arrUrl = url.split("&");
+    		var urlObj = {};  
+    		for (var i=0; i<arrUrl.length; i++){
+    			var x= arrUrl[i].split("=");
+    			urlObj[x[0]]=x[1]
+    		}
+    		return urlObj;
+	}
+	// Recogemos los parámetros que vienen en la url 
+	var misVariablesGet = getVarsUrl();
+	var proveedor = misVariablesGet.proveedor;
+	if (!proveedor) {proveedor="OE_CRIF_ACACIAS"};
+    </script>
+</head>
+<body>
+  <div id="contenedor" class="contenedor">
+	<div class="caja" id="div-temperatura">
+    		<iframe id="temperatura" src="" width="100%" height="200px" frameBorder="0"></iframe>
+  	</div>
+	<div class="caja" id="div-humedad">
+    		<iframe id="humedad" src="" width="100%" height="200px" name="iframe3" frameBorder="0"></iframe>
+  	</div>
+	<div class="caja" id="div-presion">
+    		<iframe class="caja" id="presion" src="" width="100%" height="200px" name="iframe2" frameBorder="0"></iframe>
+  	</div>
+ </div>
+ <script>
+	var url34 = "constructor_grafica_simple.html?proveedor="+proveedor+"&parametro=temperatura&pre=0&uni=C&rango=72&max=30&min=0&color=F9DB15&frecuencia=4";
+	document.getElementById("temperatura").src=url34;
+	var url35 = "constructor_grafica_simple.html?proveedor="+proveedor+"&parametro=humedad&rango=72&max=100&min=0&frecuencia=4&pre=0&uni=%&color=A9FCA6";
+	document.getElementById("humedad").src=url35;
+	var url36 = "constructor_grafica_simple.html?proveedor="+proveedor+"&parametro=presion&uni=hPa&max=960&min=920&pre=0&uni=GB&rango=72&frecuencia=4&uni=hPa";
+	document.getElementById("presion").src=url36;
+  </script>
+</body>
+</html>
