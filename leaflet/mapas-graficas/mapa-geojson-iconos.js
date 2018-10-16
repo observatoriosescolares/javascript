@@ -19,6 +19,15 @@
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     shadowSize:  [41, 41]
   });
+  var nube = new L.Icon({
+    iconUrl: 'https://iot.educa.madrid.org/imagenes/crif_p.png',
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
+    iconSize:    [45, 45],
+    iconAnchor:  [0, 0],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    shadowSize:  [41, 41]
+  });
 
   function onClick(e) {
    	// Se ejecuta cada vez que hacemos click sobre la marca, es una función redundante. 
@@ -49,7 +58,7 @@
 		// pointToLayer 
   		pointToLayer: function(feature, latlng) {
         		return L.marker(latlng, {
-        			icon: smallIcon
+        			icon: nube
         		}).on('click', onClick);
       		},
 		// Filter: Podemos filtrar las marques que se dibujan con un "true" o "false"
