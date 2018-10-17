@@ -32,22 +32,26 @@
   function onClick(e) {
    	// Se ejecuta cada vez que hacemos click sobre la marca, es una función redundante. 
   }  
-
+  function ultimaMedida(timeStamp){
+      var fecha = new Date(timeStamp);
+      var ultima = fecha.getDate().toString() + "/" + (fecha.getMonth()+1).toString() + "/" + fecha.getFullYear().toString() + " " + fecha.getHours().toString() + ":" + (fecha.getMinutes()<10?'0':'').toString() + fecha.getMinutes().toString();
+      return ultima;
+  }
   function onEachFeature(feature, layer) {
 	// Durante la carga de "data" en el array que se añade al mapa se asinga un popup a cada marca
-	layer.bindPopup("<h1>" + feature.properties.descripcion + "</h1>");
+	// layer.bindPopup("<h1>" + feature.properties.descripcion + "</h1>");
 	// Después asignamos un evento click a cada marca.
-	var descripcion = feature.properties.descripcion;
-	layer.on('click', function(e) {
+    layer.on('click', function(e) {
         	// console.log('Layer clicked!', e);
 		//alert("descripción: " + descripcion);
 		$('.sensor').remove();
 		$( "#leyenda" ).show( "fast" );
                 $( "#aviso" ).hide("fast");
 		document.getElementById("centro").innerHTML=feature.properties.descripcion;
-		document.getElementById("temperatura").innerHTML=feature.properties.temperatura;
-		document.getElementById("humedad").innerHTML=feature.properties.humedad;
-		document.getElementById("presion").innerHTML=feature.properties.presion;
+		document.getElementById("temperatura").innerHTML=feature.properties.temperatura + " ºC";
+		document.getElementById("humedad").innerHTML=feature.properties.humedad + " %";
+		document.getElementById("presion").innerHTML=feature.properties.presion + " hPa";
+        document.getElementById("time").innerHTML=ultimaMedida(feature.properties.time);
 		var loc = "./graficas/contenedorGraficasMeteo.html?proveedor="+feature.properties.proveedorID;
         	document.getElementById('igraficas').setAttribute('src', loc);
         });
