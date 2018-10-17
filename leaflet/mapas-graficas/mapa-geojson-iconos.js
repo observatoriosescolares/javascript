@@ -19,6 +19,16 @@
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     shadowSize:  [41, 41]
   });
+  var pruebas = new L.Icon({
+    iconUrl: 'https://iot.educa.madrid.org/imagenes/autoescuela-peque.png',
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
+    iconSize:    [20, 25],
+    iconAnchor:  [0, 0],
+    popupAnchor: [1, -34],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    shadowSize:  [41, 41]
+  });
+  
   var nube = new L.Icon({
     iconUrl: 'https://iot.educa.madrid.org/imagenes/crif_p.png',
     iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
@@ -60,13 +70,19 @@
   $.getJSON("https://iot.educa.madrid.org/ServiceJson/EO_AllComponent", function(data) {
   	L.geoJson(data, {
 		// pointToLayer 
-  		pointToLayer: function(feature, latlng) {
+  		    pointToLayer: function(feature, latlng) {
+                var icono;
+                if (feature.properties.tags == "pruebas"){
+                    icono = pruebas;
+                }else{
+                    icono = nube;
+                }
         		return L.marker(latlng, {
-        			icon: nube
+        			icon: icono
         		}).on('click', onClick);
       		},
 		// Filter: Podemos filtrar las marques que se dibujan con un "true" o "false"
-		filter: function(feature, layer) {
+		  filter: function(feature, layer) {
 			var visibilidad = true;
 			if (feature.properties.proveedorID == "OE_Granadilla"){visibilidad=false;}
         		return visibilidad;
