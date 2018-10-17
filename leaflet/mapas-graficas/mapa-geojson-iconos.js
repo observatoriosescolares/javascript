@@ -1,7 +1,4 @@
-
-  var my_json;
-
-  var map = L.map('map').setView([40.505, -3.79], 11);
+var map = L.map('map').setView([40.505, -3.79], 11);
 
   //Incluimos la capa del mapa de openstreetmap
   L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -10,15 +7,6 @@
   }).addTo(map);
   
   //Definimos la variable icono para después poder modificar las características. 
-  var smallIcon = new L.Icon({
-    iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon.png',
-    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
-    iconSize:    [25, 41],
-    iconAnchor:  [12, 41],
-    popupAnchor: [1, -34],
-    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-    shadowSize:  [41, 41]
-  });
   var pruebas = new L.Icon({
     iconUrl: 'https://iot.educa.madrid.org/imagenes/autoescuela-peque.png',
     iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
@@ -84,7 +72,7 @@
 		// Filter: Podemos filtrar las marques que se dibujan con un "true" o "false"
 		  filter: function(feature, layer) {
 			var visibilidad = true;
-			if (feature.properties.proveedorID == "OE_Granadilla"){visibilidad=false;}
+			if (feature.properties.proveedorID == "OE_San_Bartolome"){visibilidad=false;}
         		return visibilidad;
     		},
 		// onEachFeature: función que se llama cada vez que un GeoJson se añade al layer
