@@ -28,7 +28,6 @@
     shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
     shadowSize:  [41, 41]
   });
-
   function onClick(e) {
    	// Se ejecuta cada vez que hacemos click sobre la marca, es una función redundante. 
   }  
@@ -52,6 +51,7 @@
 		document.getElementById("humedad").innerHTML=feature.properties.humedad + " %";
 		document.getElementById("presion").innerHTML=feature.properties.presion + " hPa";
         document.getElementById("time").innerHTML=ultimaMedida(feature.properties.time);
+        document.getElementById("tags").innerHTML=feature.properties.tags;
 		var loc = "./graficas/contenedorGraficasMeteo.html?proveedor="+feature.properties.proveedorID;
         	document.getElementById('igraficas').setAttribute('src', loc);
         });
