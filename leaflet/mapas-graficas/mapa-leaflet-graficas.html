@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+  <title>Exemple de Leaflet sans Browserify</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mapa.css" media="screen" />
+  <style type="text/css">
+  #map { height: 100%; }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+</head>
+<body>
+  <div id="contenedor">  
+    <div id="map"></div>
+    <div id="etiqueta">
+    	<div class="controles" id="controles">
+    		<form class="form-estado" id="form-estado">
+				<select class="selec-estado" id="selec-estado">
+					<option value="all" selected>Todos</option>
+					<option value="operativos">Operativos</option>		
+					<option value="pruebas">Pruebas</option>
+	      		</select>
+      		</form> 
+    	</div>
+      </div>
+    <div id="leyenda">
+      <p id="centro" class="titulo">Centro: </p>
+	  <p id="temperatura" class="parametro"> </p>
+	  <p id="humedad" class="parametro"> </p>
+	  <p id="presion" class="parametro"> </p>
+      <p id="time" class="parametro"></p>
+      <p id="tags" class="parametro"></p>
+		
+	
+    </div>
+    <div id="aviso">
+        <p>Haz click sobre las marcas para obtener informacion</p>
+    </div>
+  </div>
+  <div id="graficas">
+	<iframe id="igraficas" src="./graficas/contenedorGraficasMeteo.html?proveedor=OE_CRIF_ACACIAS"></iframe>	
+  </div>
+<script class="include" type="text/javascript" src="./js/mapa-leaflet-graficas.js"></script>
+</body>
+</html>
+
+
