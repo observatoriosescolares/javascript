@@ -1,0 +1,100 @@
+html, body{
+	width: 99%;
+	height:99%;
+	padding: 0px;
+	border:0px;
+}
+#graficas {
+	position: relative;
+	width: 29%;
+	height: 100%;
+    float: left;
+	border-width:1px;  
+    border-style:solid;
+	border-color: #D6E284;
+	padding: 0px;
+    margin-left: 5px;
+    border-radius: 3px;
+}
+#igraficas{
+	width: 100%;
+	height: 100%;
+	border: 0px;
+	background-color: #eee
+}
+#contenedor {
+	position:relative;
+	width: 70%;
+    height: 100%;
+	float: left;
+	border-width:1px;  
+    border-style:solid;
+	border-color: #D6E284;
+    border-radius: 3px;
+}
+#map {
+    width: 100%;
+    height: 100%;
+    border-radius: 3px;
+    }
+#etiqueta{
+	
+	position: absolute; right: 5px; top: 5px;
+	border-radius: 3px;
+}
+#controles {
+        position: absolute; right: 00px; top: 0px;
+	border-radius: 3px;
+	}
+#selec-estado {
+    	width: 200px;
+	}
+#leyenda {
+	position: absolute; right: 5px; top: 55px;
+	display: none;
+	border-radius: 3px;
+}	
+#aviso {
+	font-family: "Libre Baskerville",serif;
+	position: absolute; right: 5px; top: 55px;
+	font-size: 12px;
+	color: #555; 
+}
+.parametro{
+	font-size: 22px;
+	color: #668DC7; 
+	font-family: "Libre Baskerville",serif;
+	border: 0px; padding: 0px; margin: 0px;
+	line-height: normal;
+}
+.titulo{
+	font-size: 12px;
+	color: blue; 
+	font-family: "Libre Baskerville",serif;
+	border: 0px; padding: 0px; margin: 0px;
+	line-height: normal;
+}
+#leyenda, #aviso, #controles{
+	width: 200px;
+	/*opacity: 0.9;*/
+	border-width:1px;  
+    border-style:solid;
+	border-color: #D6E284;
+	padding:5px;
+	background-color:  #eee;
+}
+
+@media (max-width:900px) {
+	#contenedor, #graficas, .right {
+    		width:100%;/*The width is 100%, when the viewport is 800px or smaller*/
+	}
+	#contenedor {
+		height:40%;
+	}
+	#graficas {		
+		height:60%;
+        margin-left:0px;
+        margin-top: 3px;
+	}
+}
+
