@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+  <title>Exemple de Leaflet sans Browserify</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+  <link rel="stylesheet" type="text/css" href="./css/mapa.css" media="screen" />
+  <style type="text/css">
+  #map { height: 100%; }
+  </style>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+</head>
+<body>
+  <div id="contenedor">  
+    <div id="map"></div>
+    <div id="etiqueta">
+    	<div class="controles" id="controles">
+	<div id="controles-ambito">
+    		<form class="form-ambito" id="form-ambito">
+				<select class="selec-ambito" id="selec-ambito">
+					<option value="all" selected>Todos los ámbitos</option>
+					<option value="Convivencia">Convivencia</option>
+					<option value="Inclusión">Inclusión</option>		
+					<option value="Medio ambiente">Medio ambiente</option>	
+					<option value="Salud y deporte">Salud y deporte</option>
+					<option value="TIC">TIC</option>
+       					<option value="Metodología">Metodología</option>
+					<option value="Artístico">Artístico</option>
+					<option value="Exterior">Exterior</option>
+					<option value="Metodología">Bibliotecas</option>
+					<option value="Espacios">Espacios</option>
+
+	      		</select>
+      		</form> 
+	</div>
+	<div id="controles-etapa">
+		<form class="form-etapa" id="form-etapa">
+				<select class="selec-etapa" id="selec-etapa">
+					<option value="all" selected>Todas las etapas</option>
+					<option value="Escuela infantil">Escuela infantil</option>		
+					<option value="Infantil y primaria">Infantil y primaria</option>
+					<option value="ESO y Bachillerato">ESO y Bachillerato</option>
+					<option value="Formación profesional">Formación profesional</option>
+					<option value="Adultos">Adultos</option>
+					<option value="Educación especial">Educación especial</option>
+					<option value="Regimen especial">regimen especial</option>
+
+	      		</select>
+      		</form>
+	</div> 
+    	</div>
+
+      </div>
+    <div id="leyenda">
+      	  <p id="centro" class="titulo"></p>
+	  <p id="ambito" class="parametro"> </p>
+	  <p id="etapa" class="parametro"> </p>
+	  <p id="descripcion" class="parametro"> </p>
+    </div>
+    <div id="aviso">
+        <p>Haz click sobre las marcas para obtener informacion</p>
+    </div>
+  </div>
+<script class="include" type="text/javascript" src="./js/comparte.js"></script>
+</body>
+</html>
+
+

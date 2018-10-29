@@ -104,19 +104,9 @@ function representar(data, filtro){
 }
 
 //PARSEAMOS EL GEOJSON QUE PROVIENE LA URL UTILIZANDO AJAX Y LLAMAMOS A LA FUNCIÓN QUE REPRESENTA PASÁNDOLE EL DATA
-$.getJSON("https://script.googleusercontent.com/macros/echo?user_content_key=SWFc-3sQi9sna9TMAI8AnPvdxTmKaZwmqpwWBMR6hckowR5b-gqpZXBy96WSJ2ISbSYJO9REaUv9P6cJaZgKixyojPROkPMIm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnI7bJHnJ-eJr0gWxK_o2antMoO5Nf87R3jJY8rc6IsQGfy6iRLWzR60n-OJs8rPC_UW-dnclfdIe&lib=MvDgdm_fmzszgEhwAQMC-TY62uAqfJ8lq", function(data) {
+$.getJSON("https://iot.educa.madrid.org/ServiceJson/EO_AllComponent", function(data) {
 	representar(data, "all");
 	datos = data;
-	
-}).done(function() {
-    console.log( "second success" );
-})
-  .fail(function(variable, textStatus, error) {
-        var err = textStatus + ", " + error;
-    	console.log( "Request Failed: " + err );
-})
-  .always(function() {
-    console.log( "complete" );
 });
 
 $("#selec-estado").on("change", function() {
