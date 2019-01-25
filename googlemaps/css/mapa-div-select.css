@@ -1,0 +1,54 @@
+#contenedor {
+	position:relative;
+	width: 1000px;
+    	height: 800px;
+}
+#map {
+    width: 100%;
+    height: 800px;
+    }
+#etiqueta{
+	position: absolute; right: 40px; top: 34px;
+}
+	#controles {
+        position: absolute; right: 00px; top: 15px;
+        background-color: #fff5a9;
+        opacity: 0.9;
+	    border-width:1px;
+        border-style:solid;
+        border-color: #777777;
+	    padding:5px;
+	}
+	#selec-etapa {
+    	width: 200px;
+	}
+	#selec-ambito {
+    	width: 200px;
+	}
+	p, label {
+		color: #333333; 
+		font-size: 12px; 
+		font-family: "Libre Baskerville",serif;
+	}
+#leyenda {
+	position: absolute; left: 0px; top: 80px;
+	background-color:  #fff5a9;
+	display: none;
+	opacity: 0.9;
+	border-width:1px;  
+    	border-style:solid;
+	border-color: #777777;
+	padding:5px;
+}	
+#aviso {
+	position: absolute; left: 0px; top: 80px;
+	background-color:  #fff5a9;
+	opacity: 0.9;
+	border-width:1px;  
+    border-style:solid;
+	border-color: #777777;
+	padding:5px;
+}
+h3 {
+	color: #d54d7b; font-family: "Great Vibes", cursive; font-size: 22px; font-weight: normal; margin-bottom: 0px; margin-top: 5px; text-align: center; text-shadow: 0 1px 1px #fff;
+}

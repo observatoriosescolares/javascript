@@ -1,0 +1,68 @@
+/** Import Reset CSS **/
+
+@import url("reset.css");
+
+/** Import Google fonts **/
+
+@import url("http://fonts.googleapis.com/css?family=Open+Sans");
+@import url("http://fonts.googleapis.com/css?family=Orienta");
+
+/** Global Styles **/
+
+html
+{
+	height: 100%;
+	overflow: auto;
+	
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+}
+
+body
+{
+	font-famili: "Orienta",Arial,Helvetica,sans-serif;
+	font-weight: lighter;
+	font-size: 13px;
+	color: #555;
+	padding: 0 0 15px 0;
+	background: #FFF url("../images/bg.png") repeat;
+}
+
+::selection { background: #000; color: #FFF; }
+::-moz-selection { background: #000; color: #FFF; }
+
+a { color: #00B2E0; text-decoration: none; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear; }
+a:hover { color: #222; }
+
+h1
+{
+	font-size: 25px;
+	font-weight: lighter;
+	padding: 5px 0 10px 0;
+}
+h2
+{
+	font-size: 22px;
+	font-weight: lighter;
+	padding: 5px 0px 5px 0px;
+}
+h4
+{
+	font-size: 16px;
+	font-weight: lighter;
+	padding: 5px 0 5px 0;
+	text-align:center
+}
+p
+{
+	font-size: 14px;
+	padding: 5px 0px 5px 0px;
+	margin: 5px 5px 5px 5px;
+	line-height: 1.5;
+}
+strong {
+  font-size: 15px;
+  background-color: #FFFF66;
+  font-weight: bold;
+}

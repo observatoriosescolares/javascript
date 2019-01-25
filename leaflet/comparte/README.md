@@ -1,0 +1,1 @@
+Comparte + es el desarrollo en javascript utilizando la librería leaflet que genera los mapas de las buenas prácticas de la comunidad de madrid. En este proyecto se consumen los datos procedentes de una hoja de cálculo de google drive en la que se publican en formato geojson utilizando appscrit de Google.  
