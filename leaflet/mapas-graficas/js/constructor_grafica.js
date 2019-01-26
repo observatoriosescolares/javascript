@@ -2,9 +2,9 @@
 //DEFINICIÓN DE VARIABLES Y RECOGIDA DE PARÁMETROS DE LA URL. 
 var misVariablesGet = getVarsUrl();  //en este función asignamos los distintos parámetros a miVariablesGet.
 var proveedor = misVariablesGet.proveedor;
-if (!proveedor) {proveedor = "OE_I_EDU"}
+if (!proveedor) {proveedor = "OE_CRIF_ACACIAS"}
 var rango = misVariablesGet.rango;
-if ( !rango ) { rango = "0.02"}
+if ( !rango ) { rango = "24"}
 var fin = misVariablesGet.fin;
 if ( !fin ){fin="-1"};
 var parametro = misVariablesGet.parametro;
