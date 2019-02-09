@@ -1,4 +1,3 @@
-
 var map;
 var datos;
 var myLayer;
@@ -44,8 +43,9 @@ function onEachFeature(feature, layer) {
 }
 
 //PARSEAMOS EL GEOJSON QUE PROVIENE LA URL UTILIZANDO AJAX Y LLAMAMOS A LA FUNCIÓN QUE REPRESENTA PASÁNDOLE EL DATA
+// URL antigua: https://script.googleusercontent.com/macros/echo?user_content_key=XhtKCU8kMDpy29yBT4z5VBFlR0_Mcz2d4nBqfZYdozVHX-5hTapGEOMWSCZQk6jiTs3nOK0j2IAsrJNiVoQGXGBf1VAlBd0Bm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnAqlTUE9PMQo4GSk3JNzJ3S90IUy8Zm3TRCNe_Kim06DFCGbQj4sWVFyabrbrqidsScfNc2fO4hD&lib=M0QKweTerVmYhf42X6XD33o62uAqfJ8lq
 
-$.getJSON("https://script.googleusercontent.com/macros/echo?user_content_key=XhtKCU8kMDpy29yBT4z5VBFlR0_Mcz2d4nBqfZYdozVHX-5hTapGEOMWSCZQk6jiTs3nOK0j2IAsrJNiVoQGXGBf1VAlBd0Bm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnAqlTUE9PMQo4GSk3JNzJ3S90IUy8Zm3TRCNe_Kim06DFCGbQj4sWVFyabrbrqidsScfNc2fO4hD&lib=M0QKweTerVmYhf42X6XD33o62uAqfJ8lq", function(data) {
+$.getJSON("https://script.google.com/macros/s/AKfycbxmD_Ys_JzZbzbCN0TT9TxqImE-7RRFN4w3wHCUnqmQODluZII/exec", function(data) {
 	representar(data, "all","all");
 	datos = data;
     }).done(function() {
