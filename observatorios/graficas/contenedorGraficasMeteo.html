@@ -59,14 +59,14 @@
  </div>
  <script>
         document.getElementById("titulo").innerHTML=proveedor;
-	var url34 = "constructorGrafica.html?proveedor="+proveedor+"&parametro=temperatura&pre=0&uni=C&rango=24&max=45&min=10&color=F9DB15&frecuencia=4";
+	var url34 = "constructorGrafica.html?proveedor="+proveedor+"&parametro=temperatura&pre=0&uni=C&rango=24&max=45&min=-5&color=F9DB15&frecuencia=4";
 	document.getElementById("temperatura").src=url34;
 	var url35 = "constructorGrafica.html?proveedor="+proveedor+"&parametro=humedad&rango=24&max=100&min=0&frecuencia=4&pre=0&uni=%&color=A9FCA6";
 	document.getElementById("humedad").src=url35;
 	var url36 = "constructorGrafica.html?proveedor="+proveedor+"&parametro=presion&uni=hPa&pre=0&uni=GB&rango=24&frecuencia=4&uni=hPa";
 	document.getElementById("presion").src=url36;
 	$("#seleccion").on("change", function() {
-      		var url4 = "constructorGrafica.html?proveedor="+proveedor+"&color=F9DB15&uni=C&parametro=temperatura&frecuencia=4&max=45&min=10&pre=0&uni=C&rango="+$(this).val();
+      		var url4 = "constructorGrafica.html?proveedor="+proveedor+"&color=F9DB15&uni=C&parametro=temperatura&frecuencia=4&max=45&min=-5&pre=0&uni=C&rango="+$(this).val();
 		document.getElementById("temperatura").src=url4;
     	})  
 	$("#seleccion").on("change", function() {
