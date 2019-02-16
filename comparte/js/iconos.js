@@ -10,6 +10,15 @@ var convivencia = new L.Icon({
     shadowSize:  [41, 41]
 });
   
+var artistica = new L.Icon({
+    iconUrl: 'https://iot.educa.madrid.org/javascript/comparte/imagenes/iconos/artistica.png',
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
+    iconSize:    [45, 45],
+    iconAnchor:  [0, 0],
+    popupAnchor: [-1,-1],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    shadowSize:  [41, 41]
+});
 var inclusion = new L.Icon({
     iconUrl: 'https://iot.educa.madrid.org/javascript/comparte/imagenes/iconos/inclusion.png',
     iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
@@ -72,7 +81,7 @@ function representar(data, ambito, etapa){
   				case "Convivencia":
  					icono = convivencia;
  					break;
-    				case "Inclusión":
+                case "Inclusión":
         				icono = inclusion;
         				break;
 				case "Medio Ambiente":
@@ -83,6 +92,9 @@ function representar(data, ambito, etapa){
         				break;
 				case "TIC":
         				icono = tic;
+        				break;
+                case "Educación Artística":
+        				icono = artistica;
         				break;
     				default:
         				icono = otros;
