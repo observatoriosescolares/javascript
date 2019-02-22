@@ -68,6 +68,25 @@ var tic = new L.Icon({
     shadowSize:  [41, 41]
 });
 
+var espacios = new L.Icon({
+    iconUrl: 'https://iot.educa.madrid.org/javascript/comparte/imagenes/iconos/espacios.png',
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
+    iconSize:    [45, 45],
+    iconAnchor:  [0, 0],
+    popupAnchor: [20, 10],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    shadowSize:  [41, 41]
+});
+var deportesalud = new L.Icon({
+    iconUrl: 'https://iot.educa.madrid.org/javascript/comparte/imagenes/iconos/deportesalud.png',
+    iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
+    iconSize:    [45, 45],
+    iconAnchor:  [0, 0],
+    popupAnchor: [20, 10],
+    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+    shadowSize:  [41, 41]
+});
+
 // Función que escribe los iconos solicitados en el mapa
 // Utiliza los nombres de variables definidos anteriormente. 
 function representar(data, ambito, etapa){
@@ -96,7 +115,13 @@ function representar(data, ambito, etapa){
                 case "Educación Artística":
         				icono = artistica;
         				break;
-    				default:
+                case "Espacios":
+        				icono = espacios;
+        				break;
+                case "Salud y Deporte":
+        				icono = deportesalud;
+        				break;
+                default:
         				icono = otros;
 			}
 			return L.marker(latlng, {
