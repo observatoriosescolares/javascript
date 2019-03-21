@@ -24,7 +24,7 @@
 	if (!proveedor) {proveedor="OE_CRIF_ACACIAS"};
 	var nombrecon = misVariablesGet.nombre;
 	if ( !nombrecon ) {nombrecon="OBSERVATORIO"};
-	var nombre = nombrecon.split('+').join(' ');
+	var nombreLiteral = nombrecon.split(' ').join(',');
     </script>
 </head>
 <body>
@@ -58,7 +58,7 @@
   	</div>
  </div>
  <script>
-        document.getElementById("titulo").innerHTML=proveedor;
+    document.getElementById("titulo").innerHTML=nombreLiteral;
 	var url34 = "constructorGrafica.html?proveedor="+proveedor+"&parametro=temperatura&pre=0&uni=C&rango=24&max=45&min=-5&color=F9DB15&frecuencia=4";
 	document.getElementById("temperatura").src=url34;
 	var url35 = "constructorGrafica.html?proveedor="+proveedor+"&parametro=humedad&rango=24&max=100&min=0&frecuencia=4&pre=0&uni=%&color=A9FCA6";
