@@ -4,7 +4,8 @@
 <html>
 <head>
     <title>Graficas en tiempo real de parámetros meteorológicos</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">	
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" type="text/css" href="../css/contenedor-graficas.css" />
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script>
@@ -58,7 +59,7 @@
   	</div>
  </div>
  <script>
-    document.getElementById("titulo").innerHTML=nombreLiteral;
+    document.getElementById("titulo").innerHTML=String(nombreLiteral);
 	var url34 = "constructorGrafica.html?proveedor="+proveedor+"&parametro=temperatura&pre=0&uni=C&rango=24&max=45&min=-5&color=F9DB15&frecuencia=4";
 	document.getElementById("temperatura").src=url34;
 	var url35 = "constructorGrafica.html?proveedor="+proveedor+"&parametro=humedad&rango=24&max=100&min=0&frecuencia=4&pre=0&uni=%&color=A9FCA6";

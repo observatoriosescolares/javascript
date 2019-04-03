@@ -59,8 +59,9 @@ function onEachFeature(feature, layer) {
 		document.getElementById("presion").innerHTML=feature.properties.presion + " hPa";
         document.getElementById("time").innerHTML=ultimaMedida(feature.properties.time);
         document.getElementById("tags").innerHTML=feature.properties.tags;
-        var nombre = feature.properties.descripcion
+        var nombre = feature.properties.descripcion;
         var nombreLiteral = nombre.split(' ').join('_');
+        //var nombreLiteral = utf8_encode(nombre);
 		var loc = "./graficas/contenedorGraficasMeteo.html?proveedor="+feature.properties.proveedorID+"&nombre="+nombreLiteral;
        	document.getElementById('igraficas').setAttribute('src', loc);
 	});
